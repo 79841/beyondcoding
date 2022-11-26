@@ -1,6 +1,18 @@
+# main.py
 import pygame
 import object
 import math
+import time
+
+
+import threading
+import socket
+
+PORT = 5050
+SERVER = "localhost"
+ADDR = (SERVER, PORT)
+FORMAT = "utf-8"
+DISCONNECT_MESSAGE = "!DISCONNECT"
 
 pygame.init()
 
@@ -14,6 +26,30 @@ SIZE = [600, 600]
 
 screen = pygame.display.set_mode(SIZE)
 pygame.display.set_caption("Shooting Game")
+
+
+def connect():
+    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    client.connect(ADDR)
+    return client
+
+
+def send(client, msg):
+    message = msg.encode(FORMAT)
+    client.send(message)
+
+
+def recv(connection, username):
+    while True:
+        msg = connection.recv(1024).decode(FORMAT)
+        if f"[{username}]" not in msg:
+            print(f"\r{msg}                 ")
+            print("Message (q for quit): ", end="")
+
+
+connection = connect()
+# thread = threading.Thread(target=recv, args=(connection, username), daemon=True)
+# thread.start()
 
 playing = True
 clock = pygame.time.Clock()
@@ -41,6 +77,7 @@ while playing:
         bullets.append(bullet)
 
     player.move(pygame.key.get_pressed(), screen.get_size())
+    send(connection, f"{player.x_pos},{player.y_pos}")
 
     screen.fill(WHITE)
     player.draw(screen)
@@ -60,3 +97,16 @@ while playing:
             playing = False
 
 pygame.quit()
+
+
+# while True:
+#     msg = input("Message (q for quit): ")
+
+#     if msg == "q":
+#         break
+
+#     send(connection, msg)
+
+# send(connection, DISCONNECT_MESSAGE)
+# time.sleep(1)
+# print("Disconnected")

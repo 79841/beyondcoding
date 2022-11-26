@@ -1,0 +1,115 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&family=Roboto&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  height: 100vh;
+  width: 100%;
+  background-color: #284e48;
+  font-family: "Roboto", sans-serif;
+}
+.container {
+  height: 100%;
+  width: 100%;
+}
+.title-container {
+  height: 15vh;
+  width: 100%;
+}
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 5vh;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+  font-weight: 600;
+  color: #97aeae;
+  letter-spacing: 5px;
+}
+
+.input-container {
+  height: 8vh;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  padding-left: 5%;
+  padding-right: 5%;
+}
+.input-box {
+  width: 100%;
+  border: 3px #97aeae solid;
+  border-radius: 5px;
+  height: 4vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 3%;
+}
+.input-task {
+  outline: none;
+  width: 75%;
+  height: 100%;
+  background: none;
+  border: 0;
+  color: #97aeae;
+  font-size: 2vh;
+}
+.add-btn {
+  height: 4vh;
+  width: 20%;
+  border: 3px #97aeae solid;
+  background-color: #97aeae;
+  border-radius: 0 5px 5px 0;
+  margin-left: auto;
+  color: #284e48;
+  font-size: 2vh;
+  font-weight: 600;
+}
+.tasks-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+.task {
+  /* border: 3px #809797 solid; */
+  background: #97aeae;
+  color: #284e48;
+  font-size: 2vh;
+  font-weight: 600;
+  border-radius: 5px;
+  /* background: #809797; */
+  width: 45%;
+  height: 18vh;
+  margin-bottom: 3vh;
+  padding: 5%;
+}
+.content {
+  height: 80%;
+  overflow: hidden;
+}
+.state-btn {
+  height: 20%;
+  display: flex;
+  justify-content: space-between;
+}
+.task button {
+  padding: 0;
+  width: 45%;
+  color: #284e48;
+  font-size: 2vh;
+  background: none;
+  font-weight: 600;
+  border: 0;
+}
+.finish {
+  text-align: left;
+}
+.delete {
+  text-align: right;
+}
+/* background: #f2f6f9; */
