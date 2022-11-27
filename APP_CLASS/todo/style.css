@@ -112,4 +112,8 @@ body {
 .delete {
   text-align: right;
 }
+
+.done {
+  opacity: 0.5;
+}
 /* background: #f2f6f9; */
