@@ -87,6 +87,7 @@ body {
   height: 18vh;
   margin-bottom: 3vh;
   padding: 5%;
+  transition: all 2s;
 }
 .content {
   height: 80%;
@@ -115,5 +116,18 @@ body {
 
 .done {
   opacity: 0.5;
+}
+
+.change-state {
+  animation: fadeout 2s;
+}
+
+@keyframes fadeout {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
 }
 /* background: #f2f6f9; */

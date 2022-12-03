@@ -1,4 +1,5 @@
 from sys import stdin
+
 N, M = map(int, stdin.readline().split())
 
 maze = [list(map(int, stdin.readline().strip())) for i in range(N)]
@@ -59,4 +60,4 @@ while queue:
         maze[ny][nx] = maze[y][x] + 1
         queue.append([ny, nx])
 
-print(maze[N-1][M-1])
+print(maze[N - 1][M - 1])

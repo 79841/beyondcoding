@@ -17,14 +17,20 @@ server.bind(ADDR)
 clients = set()
 clients_lock = threading.Lock()
 
-x_pos = 0
-y_pos = 0
+# x_pos = 0
+# y_pos = 0
+
+e_x_pos, e_y_pos = 0, 0
+eb_x_pos, eb_y_pos = 0, 0
+
+enemy_bullets = []
 
 
 def handle_client(conn, addr):
     print(f"[NEW CONNECTION] {addr} Connected")
-    global x_pos
-    global y_pos
+    global e_x_pos, e_y_pos, eb_x_pos, eb_y_pos
+    global enemy_bullets
+    # global y_pos
 
     try:
         connected = True
@@ -39,10 +45,21 @@ def handle_client(conn, addr):
             print(f"[{addr}] {msg}")
 
             try:
-                x_pos, y_pos = map(lambda pos: 570 - float(pos), msg.split(","))
-                print(x_pos, y_pos)
-            except:
-                pass
+                ob, x_pos, y_pos = msg.split(",")
+                x_pos = 570 - float(x_pos)
+                y_pos = 570 - float(y_pos)
+                if ob == "player":
+                    e_x_pos, e_y_pos = x_pos, y_pos
+                elif ob == "bullet":
+                    eb_x_pos, eb_y_pos = x_pos, y_pos
+                    bullet = object.Bullet(e_x_pos + 15, e_y_pos + 15, 4, 4, RED, 10)
+
+                    bullet.set_direction(eb_x_pos, eb_y_pos)
+                    enemy_bullets.append(bullet)
+                    # x_pos, y_pos = map(lambda pos: 570 - float(pos), msg.split(","))
+                print(ob, x_pos, y_pos)
+            except Exception as e:
+                print(e)
 
     finally:
         with clients_lock:
@@ -88,14 +105,26 @@ while True:
         if event.type == pygame.QUIT:
             playing = False
 
-        enemy.x_pos = x_pos
-        enemy.y_pos = y_pos
+        enemy.x_pos = e_x_pos
+        enemy.y_pos = e_y_pos
 
         screen.fill(BLACK)
 
         enemy.draw(screen)
 
+        for bullet in enemy_bullets:
+            bullet.move()
+            bullet.draw(screen)
+
+        enemy_bullets = list(filter(lambda b: b.check_hit_wall(screen), enemy_bullets))
+
         pygame.display.update()
+
+        # for bullet in enemy_bullets:
+        #     if bullet.check_collision(enemy):
+        #         playing = False
+
+        print(enemy_bullets)
 
     pygame.quit()
 

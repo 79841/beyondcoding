@@ -75,9 +75,10 @@ while playing:
 
         bullet.set_direction(pos[0], pos[1])
         bullets.append(bullet)
+        send(connection, f"bullet,{pos[0]},{pos[1]}")
 
     player.move(pygame.key.get_pressed(), screen.get_size())
-    send(connection, f"{player.x_pos},{player.y_pos}")
+    send(connection, f"player,{player.x_pos},{player.y_pos}")
 
     screen.fill(WHITE)
     player.draw(screen)

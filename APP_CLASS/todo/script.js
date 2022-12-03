@@ -4,7 +4,6 @@ const tasksContainer = document.querySelector(".tasks-container");
 const finishButtons = document.querySelectorAll(".finish");
 const deleteButtons = document.querySelectorAll(".delete");
 
-// let test = 0;
 let toDoId = 0;
 
 const getToDoList = () => {
@@ -13,7 +12,8 @@ const getToDoList = () => {
 
 const setToDoList = (toDoList) => {
   localStorage.setItem("todo-list", JSON.stringify(toDoList));
-  displayToDoList();
+  window.dispatchEvent(new Event("storage"));
+  // displayToDoList();
 };
 
 const clearInput = () => {
@@ -49,20 +49,33 @@ const displayToDoList = () => {
 const finishButtonHandler = (e) => {
   const element = e.parentElement.parentElement;
   const toDoList = getToDoList();
+  // element.classList.add("change-state");
+
   for (toDo of toDoList) {
     if (toDo.id === element.id) {
       toDo.progress = "done";
     }
   }
   setToDoList(toDoList);
+  // setTimeout(() => {
+  //   setToDoList(toDoList);
+  // }, 2000);
 };
 
-const deleteButtonHandler = (e) => {
-  e.remove();
-};
+// const deleteButtonHandler = (e) => {
+//   const target = e.parentElement.parentElement;
+//   const toDoList = getToDoList("todo-list");
+//   const result = toDoList.filter((toDo) => target.id != toDo.id);
+//   setToDoList(result);
+//   target.remove();
+// };
 
 inputBox.addEventListener("submit", (event) => {
   event.preventDefault();
+
+  // if (input.value == "") {
+  //   return;
+  // }
 
   const toDoId = Number(localStorage.getItem("lastToDoId"));
   const toDoList = getToDoList();
