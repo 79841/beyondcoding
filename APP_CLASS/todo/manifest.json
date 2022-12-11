@@ -1,0 +1,22 @@
+{
+  "background_color": "#ffffff",
+  "description": "test pwa",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "TODO",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "TD",
+  "start_url": "./index.html",
+  "theme_color": "#ffffff",
+  "categories": ["lifestyle"],
+  "screenshots": [],
+  "icons": [
+    {
+      "src": "/images/maskable_icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": []
+}
