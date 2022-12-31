@@ -46,68 +46,49 @@ const makeGenreSection = async () => {
     )
   ).json();
 
-  genres.forEach();
+  genres.forEach((item) => {
+    fetchMoviesListByGenres(item.id, item.name);
+  });
 };
 makeGenreSection();
 
-// fetch(
-//   config.genres_list_url +
-//     new URLSearchParams({
-//       api_key: config.api_key,
-//     })
-// )
-//   .then((res) => res.json())
-//   .then((data) => {
-//     data.genres.forEach((item) => {
-//       fetchMoviesListByGenres(item.id, item.name);
-//     });
-//   });
+const fetchMoviesListByGenres = async (id, genres) => {
+  const { results } = await (
+    await fetch(
+      config.movie_genres_url +
+        new URLSearchParams({
+          api_key: config.api_key,
+          with_genres: id,
+          page: Math.floor(Math.random() * 3) + 1,
+        })
+    )
+  ).json();
 
-const fetchMoviesListByGenres = (id, genres) => {
-  fetch(
-    config.movie_genres_url +
-      new URLSearchParams({
-        api_key: config.api_key,
-        with_genres: id,
-        page: Math.floor(Math.random() * 3) + 1,
-      })
-  )
-    .then((res) => res.json())
-    .then((data) => {
-      makeCategoryElement(`${genres}_movie`, data.results);
-    })
-    .catch((err) => console.log(err));
+  makeGenreElement(`${genres}_movie`, results);
+
+  // .then((data) => {
+  //   makeCategoryElement(`${genres}_movie`, data.results);
+  // })
+  // .catch((err) => console.log(err));
 };
 
-const makeCategoryElement = (category, data) => {
-  categorySection.innerHTML += `<div class="movie-list">
-    <button class="pre-btn">
-      <img src="img/pre.png" alt="" />
-    </button>
-    <h1 class="movie-category">${category.split("_").join(" ")}</h1>
-    <div class="movie-container" id="${category}">
-
-    </div>
-    <button class="nxt-btn">
-      <img src="img/nxt.png" alt="" />
-    </button>
-  </div>`;
+const makeGenreElement = (category, data) => {
+  genreSection.innerHTML += `
+  <h1 class="movie-genre">${category.split("_").join(" ")}</h1>
+  <div class="movie-container" id="${category}"></div>`;
   makeCards(category, data);
 };
 
 const makeCards = (id, data) => {
   const movieContainer = document.getElementById(id);
   data.forEach((item, i) => {
-    if (item.backdrop_path == null) {
-      item.backdrop_path = item.poster_path;
-      if (item.backdrop_path == null) {
-        return;
-      }
+    if (item.poster_path == null) {
+      return;
     }
 
     movieContainer.innerHTML += `
     <div class="movie">
-        <img src="${config.img_url}${item.backdrop_path}" alt="" />
+        <img src="${config.img_url}${item.poster_path}" alt="" />
         <p class="movie-title">${item.title}</p>
     </div>
     `;

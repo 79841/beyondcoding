@@ -166,6 +166,32 @@ header .app-view-navbar ul li a:hover {
   object-fit: cover;
 }
 
+.genre {
+  width: 100%;
+  z-index: 1;
+  padding: 2rem;
+}
+
+.genre .movie-genre {
+  color: #fff;
+  font-size: 2rem;
+}
+
+.genre .movie-container {
+  display: flex;
+  align-items: center;
+}
+
+.genre .movie-container .movie {
+  height: 20rem;
+}
+
+.genre .movie-container .movie img {
+  border-radius: 2rem;
+  height: 100%;
+  object-fit: cover;
+}
+
 @media (max-width: 1300px) {
   .home .img-slider a img {
     width: 50%;
