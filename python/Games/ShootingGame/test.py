@@ -51,7 +51,7 @@ def handle_client(conn, addr):
                 if ob == "player":
                     e_x_pos, e_y_pos = x_pos, y_pos
                 elif ob == "bullet":
-                    eb_x_pos, eb_y_pos = x_pos, y_pos
+                    eb_x_pos, eb_y_pos = x_pos + 30, y_pos + 30
                     bullet = object.Bullet(e_x_pos + 15, e_y_pos + 15, 4, 4, RED, 10)
 
                     bullet.set_direction(eb_x_pos, eb_y_pos)
@@ -129,10 +129,14 @@ while True:
 
             bullet.set_direction(pos[0], pos[1])
             bullets.append(bullet)
-            # send(connection, f"bullet,{pos[0]},{pos[1]}")
+            ####
+            conn.sendall(f"bullet,{pos[0]},{pos[1]}".encode(FORMAT))
+            ####
 
         player.move(pygame.key.get_pressed(), screen.get_size())
-        # send(connection, f"player,{player.x_pos},{player.y_pos}")
+        ####
+        conn.sendall(f"player,{player.x_pos},{player.y_pos}".encode(FORMAT))
+        ####
 
         # screen.fill(WHITE)
         player.draw(screen)
@@ -146,5 +150,15 @@ while True:
         pygame.display.update()
 
         print(enemy_bullets)
+
+        for bullet in bullets:
+            if bullet.check_collision(enemy):
+                playing = False
+
+        ####
+        for bullet in enemy_bullets:
+            if bullet.check_collision(player):
+                playing = False
+        ####
 
     pygame.quit()
