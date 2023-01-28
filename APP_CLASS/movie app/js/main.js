@@ -90,6 +90,7 @@ const makeCards = (id, data) => {
     <div class="movie">
         <img src="${config.img_url}${item.poster_path}" alt="" />
         <p class="movie-title">${item.title}</p>
+        <p class="overview">${item.overview}</p>
     </div>
     `;
   });
@@ -104,6 +105,7 @@ const makeTrendingSection = async () => {
         })
     )
   ).json();
+  console.log(results);
   arrangeMovieList(results);
 };
 
@@ -114,6 +116,7 @@ const arrangeMovieList = (movies) => {
         <img src="${config.img_url}${item.poster_path}" alt="" />
         <div class="ranking">${i}</div>
         <p class="movie-title">${item.title}</p>
+        <p class="overview">${item.overview}</p>
     </div>
     `;
   });

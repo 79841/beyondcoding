@@ -176,31 +176,50 @@ header .app-view-navbar ul li a:hover {
   color: #fff;
   font-size: 2rem;
 }
+.genre .movie-container {
+  display: flex;
+}
 
 .genre .movie-container {
   display: flex;
   align-items: center;
   margin-bottom: 4rem;
-  height: 30rem;
   overflow-x: scroll;
-  overflow-y: hidden;
+  /* overflow-y: visible; */
 }
 
 .genre .movie-container .movie {
   height: 20rem;
+  /* height: 100%; */
   margin-right: 2rem;
 }
 
 .genre .movie-container .movie img {
+  /* height: 20rem; */
   border-radius: 2rem;
   height: 100%;
   object-fit: cover;
 }
 
 .genre .movie-container .movie .movie-title {
-  position: relative;
   color: #fff;
   font-size: 1.1rem;
+}
+
+.genre .movie-container .movie:hover img {
+  position: absolute;
+  transform: translate(-25%, -25%);
+  height: 40rem;
+  z-index: 100;
+}
+
+.genre .movie-container .movie .overview {
+  position: relative;
+  color: #fff;
+  font-size: 1.5rem;
+  height: 20rem;
+  top: -20rem;
+  display: none;
 }
 
 .genre .movie-container::-webkit-scrollbar {
