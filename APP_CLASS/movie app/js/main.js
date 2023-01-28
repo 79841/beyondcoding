@@ -2,6 +2,7 @@ import config from "./config.js";
 
 const imgSliderBox = document.querySelector(".img-slider");
 const genreSection = document.querySelector(".genre");
+const trendingSection = document.querySelector(".trending");
 
 const makeImgSlider = async () => {
   const { results } = await (
@@ -12,7 +13,6 @@ const makeImgSlider = async () => {
         })
     )
   ).json();
-  console.log(results);
   results.forEach((item) => {
     imgSliderBox.innerHTML += `
     <a href="#">
@@ -94,3 +94,29 @@ const makeCards = (id, data) => {
     `;
   });
 };
+
+const makeTrendingSection = async () => {
+  const { results } = await (
+    await fetch(
+      config.trending_list_url +
+        new URLSearchParams({
+          api_key: config.api_key,
+        })
+    )
+  ).json();
+  arrangeMovieList(results);
+};
+
+const arrangeMovieList = (movies) => {
+  movies.forEach((item, i) => {
+    trendingSection.innerHTML += `
+    <div class="movie">
+        <img src="${config.img_url}${item.poster_path}" alt="" />
+        <div class="ranking">${i}</div>
+        <p class="movie-title">${item.title}</p>
+    </div>
+    `;
+  });
+};
+
+makeTrendingSection();

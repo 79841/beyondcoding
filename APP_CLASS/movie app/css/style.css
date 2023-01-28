@@ -180,16 +180,65 @@ header .app-view-navbar ul li a:hover {
 .genre .movie-container {
   display: flex;
   align-items: center;
+  margin-bottom: 4rem;
+  height: 30rem;
+  overflow-x: scroll;
+  overflow-y: hidden;
 }
 
 .genre .movie-container .movie {
   height: 20rem;
+  margin-right: 2rem;
 }
 
 .genre .movie-container .movie img {
   border-radius: 2rem;
   height: 100%;
   object-fit: cover;
+}
+
+.genre .movie-container .movie .movie-title {
+  position: relative;
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+.genre .movie-container::-webkit-scrollbar {
+  height: 0.5rem;
+}
+
+.genre .movie-container::-webkit-scrollbar-thumb {
+  height: 30%;
+  background: #bf0613;
+
+  border-radius: 10px;
+}
+
+.genre .movie-container::-webkit-scrollbar-track {
+  background: rgba(124, 5, 5, 0.1);
+}
+
+.trending {
+  width: 100%;
+  z-index: 1;
+  padding: 2rem;
+  display: flex;
+}
+
+.trending .movie {
+  height: 20rem;
+  margin-right: 2rem;
+}
+
+.trending .movie img {
+  height: 100%;
+  object-fit: cover;
+  transform: rotateY(20deg);
+  clip-path: polygon(0 8%, 100% 0, 100% 100%, 0 91%);
+}
+
+.trending .movie .ranking {
+  color: #fff;
 }
 
 @media (max-width: 1300px) {
