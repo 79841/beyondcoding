@@ -8,12 +8,15 @@ const movie_genres_url = "https://api.themoviedb.org/3/discover/movie?";
 
 const trending_list_url = "https://api.themoviedb.org/3/trending/movie/week?";
 
+const movie_url = "https://www.themoviedb.org/movie/";
+
 const config = {
   api_key,
   img_url,
   genres_list_url,
   movie_genres_url,
   trending_list_url,
+  movie_url,
 };
 
 export default config;

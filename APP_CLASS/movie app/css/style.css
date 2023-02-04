@@ -148,6 +148,7 @@ header .app-view-navbar ul li a:hover {
 .home {
   width: 100%;
   z-index: 1;
+  margin-bottom: 5rem;
 }
 
 .home .img-slider {
@@ -176,29 +177,33 @@ header .app-view-navbar ul li a:hover {
   color: #fff;
   font-size: 2rem;
 }
-.genre .movie-container {
-  display: flex;
-}
 
 .genre .movie-container {
   display: flex;
-  align-items: center;
-  margin-bottom: 4rem;
+  align-items: flex-start;
+  margin-bottom: 10rem;
   overflow-x: scroll;
-  /* overflow-y: visible; */
+  overflow-y: hidden;
+  /* height: 30rem; */
 }
 
 .genre .movie-container .movie {
-  height: 20rem;
-  /* height: 100%; */
+  position: relative;
+  height: 30rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   margin-right: 2rem;
+  top: 3rem;
 }
 
 .genre .movie-container .movie img {
-  /* height: 20rem; */
+  height: 20rem;
   border-radius: 2rem;
-  height: 100%;
   object-fit: cover;
+  transition: all 1s;
+  margin-bottom: 1rem;
 }
 
 .genre .movie-container .movie .movie-title {
@@ -206,58 +211,131 @@ header .app-view-navbar ul li a:hover {
   font-size: 1.1rem;
 }
 
-.genre .movie-container .movie:hover img {
-  position: absolute;
-  transform: translate(-25%, -25%);
-  height: 40rem;
-  z-index: 100;
-}
-
 .genre .movie-container .movie .overview {
+  display: flex;
+  align-items: center;
   position: relative;
   color: #fff;
-  font-size: 1.5rem;
-  height: 20rem;
-  top: -20rem;
-  display: none;
+  font-size: 1rem;
+  height: 25rem;
+  width: 15rem;
+  font-size: 1.2rem;
+  top: -50%;
+  opacity: 0;
+  transition: all 1s;
 }
 
-.genre .movie-container::-webkit-scrollbar {
+.genre .movie-container .movie:hover img {
+  height: 25rem;
+  opacity: 0.3;
+}
+
+.genre .movie-container .movie:hover .overview {
+  opacity: 1;
+}
+
+.genre .movie-container::-webkit-scrollbar,
+.trending .trending-movie-container::-webkit-scrollbar,
+body::-webkit-scrollbar {
   height: 0.5rem;
+  width: 0.5rem;
 }
 
-.genre .movie-container::-webkit-scrollbar-thumb {
+.genre .movie-container::-webkit-scrollbar-thumb,
+.trending .trending-movie-container::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
   height: 30%;
   background: #bf0613;
 
   border-radius: 10px;
 }
 
-.genre .movie-container::-webkit-scrollbar-track {
+.genre .movie-container::-webkit-scrollbar-track,
+.trending .trending-movie-container::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
   background: rgba(124, 5, 5, 0.1);
+}
+
+.trending h1 {
+  color: #fff;
+  font-size: 2rem;
 }
 
 .trending {
   width: 100%;
-  z-index: 1;
   padding: 2rem;
-  display: flex;
 }
 
-.trending .movie {
-  height: 20rem;
+.trending .trending-movie-container {
+  width: 100%;
+  z-index: 1;
+  padding: 2rem;
+  height: 35rem;
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 4rem;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.trending .trending-movie-container .movie {
+  position: relative;
+  top: 25rem;
   margin-right: 2rem;
 }
 
-.trending .movie img {
-  height: 100%;
+.trending .trending-movie-container .movie img {
+  height: 20rem;
   object-fit: cover;
   transform: rotateY(20deg);
   clip-path: polygon(0 8%, 100% 0, 100% 100%, 0 91%);
 }
 
-.trending .movie .ranking {
+.trending .trending-movie-container .movie img {
+  margin-left: 2rem;
+  margin-bottom: 2rem;
+  transition: height 1s;
+}
+
+.trending .trending-movie-container .movie .ranking {
+  position: absolute;
+  color: #000;
+  font-size: 13rem;
+  transform: translate(-25%, -90%);
+  -webkit-text-stroke-width: 0.2rem;
+  -webkit-text-stroke-color: #fff;
+}
+
+.trending .trending-movie-container .movie .movie-title {
   color: #fff;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.trending .trending-movie-container .movie .overview {
+  display: flex;
+  align-items: center;
+  position: relative;
+  color: #fff;
+  font-size: 1rem;
+  height: 25rem;
+  width: 12rem;
+  font-size: 1.2rem;
+  margin-left: 2rem;
+  top: -30rem;
+  left: 2rem;
+  /* transform: translate(15%, -120%); */
+  opacity: 0;
+  transition: all 1s;
+}
+
+.trending .trending-movie-container .movie:hover img {
+  height: 25rem;
+  opacity: 0.3;
+}
+
+.trending .trending-movie-container .movie:hover .overview {
+  opacity: 1;
 }
 
 @media (max-width: 1300px) {

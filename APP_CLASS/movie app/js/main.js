@@ -2,7 +2,7 @@ import config from "./config.js";
 
 const imgSliderBox = document.querySelector(".img-slider");
 const genreSection = document.querySelector(".genre");
-const trendingSection = document.querySelector(".trending");
+const trendingSection = document.querySelector(".trending-movie-container");
 
 const makeImgSlider = async () => {
   const { results } = await (
@@ -87,11 +87,19 @@ const makeCards = (id, data) => {
     }
 
     movieContainer.innerHTML += `
+    <a class="link" target="_blank" href="${config.movie_url}${item.id}">
     <div class="movie">
+      
         <img src="${config.img_url}${item.poster_path}" alt="" />
         <p class="movie-title">${item.title}</p>
-        <p class="overview">${item.overview}</p>
+        <p class="overview">${
+          item.overview.length > 100
+            ? item.overview.slice(0, 100) + "..."
+            : item.overview
+        }</p>
+      
     </div>
+    </a>
     `;
   });
 };
@@ -112,14 +120,22 @@ const makeTrendingSection = async () => {
 const arrangeMovieList = (movies) => {
   movies.forEach((item, i) => {
     trendingSection.innerHTML += `
+    <a class="link" target="_blank" href="${config.movie_url}${item.id}">
     <div class="movie">
         <img src="${config.img_url}${item.poster_path}" alt="" />
-        <div class="ranking">${i}</div>
+        <div class="ranking">${i + 1}</div>
         <p class="movie-title">${item.title}</p>
-        <p class="overview">${item.overview}</p>
+        <p class="overview">${
+          item.overview.length > 100
+            ? item.overview.slice(0, 100) + "..."
+            : item.overview
+        }</p>
     </div>
+    </a>
     `;
   });
 };
+
+// console.log("testestset");
 
 makeTrendingSection();
