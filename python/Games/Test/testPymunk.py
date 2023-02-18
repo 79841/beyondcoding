@@ -68,41 +68,41 @@ def main():
                 p = event.pos[X], flipy(event.pos[Y])
                 body = pymunk.Body(10, 100)
                 body.position = p
-                shape = pymunk.Circle(body, 10, p)
+                shape = pymunk.Circle(body, 10, (0, 0))
                 shape.friction = 0.5
                 shape.collision_type = COLLTYPE_BALL
                 space.add(body, shape)
                 balls.append(shape)
 
-            # elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 3:
-            #     if line_point1 is None:
-            #         line_point1 = Vec2d(event.pos[X], flipy(event.pos[Y]))
-            # elif event.type == pygame.MOUSEBUTTONUP and event.button == 3:
-            #     if line_point1 is not None:
+            elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 3:
+                if line_point1 is None:
+                    line_point1 = Vec2d(event.pos[X], flipy(event.pos[Y]))
+            elif event.type == pygame.MOUSEBUTTONUP and event.button == 3:
+                if line_point1 is not None:
 
-            #         line_point2 = Vec2d(event.pos[X], flipy(event.pos[Y]))
-            #         shape = pymunk.Segment(
-            #             space.static_body, line_point1, line_point2, 0.0
-            #         )
-            #         shape.friction = 0.99
-            #         space.add(shape)
-            #         static_lines.append(shape)
-            #         line_point1 = None
+                    line_point2 = Vec2d(event.pos[X], flipy(event.pos[Y]))
+                    shape = pymunk.Segment(
+                        space.static_body, line_point1, line_point2, 0.0
+                    )
+                    shape.friction = 0.99
+                    space.add(shape)
+                    static_lines.append(shape)
+                    line_point1 = None
 
             # elif event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
             #     run_physics = not run_physics
 
-        # p = pygame.mouse.get_pos()
-        # mouse_pos = Vec2d(p[X], flipy(p[Y]))
-        # mouse_body.position = mouse_pos
+        p = pygame.mouse.get_pos()
+        mouse_pos = Vec2d(p[X], flipy(p[Y]))
+        mouse_body.position = mouse_pos
 
-        # if pygame.key.get_mods() & pygame.KMOD_SHIFT and pygame.mouse.get_pressed()[0]:
-        #     body = pymunk.Body(10, 10)
-        #     body.position = mouse_pos
-        #     shape = pymunk.Circle(body, 10, (0, 0))
-        #     shape.collision_type = COLLTYPE_BALL
-        #     space.add(body, shape)
-        #     balls.append(shape)
+        if pygame.key.get_mods() & pygame.KMOD_SHIFT and pygame.mouse.get_pressed()[0]:
+            body = pymunk.Body(10, 10)
+            body.position = mouse_pos
+            shape = pymunk.Circle(body, 10, (0, 0))
+            shape.collision_type = COLLTYPE_BALL
+            space.add(body, shape)
+            balls.append(shape)
 
         ### Update physics
         if run_physics:
@@ -136,19 +136,22 @@ Space: Pause physics simulation"""
             pygame.draw.circle(screen, pygame.Color("blue"), p, int(r), 2)
             pygame.draw.line(screen, pygame.Color("red"), p, p2)
 
-        # if line_point1 is not None:
-        #     p1 = int(line_point1.x), int(flipy(line_point1.y))
-        #     p2 = mouse_pos.x, flipy(mouse_pos.y)
-        #     pygame.draw.lines(screen, pygame.Color("black"), False, [p1, p2])
+        if line_point1 is not None:
+            p1 = int(line_point1.x), int(flipy(line_point1.y))
+            p2 = mouse_pos.x, flipy(mouse_pos.y)
+            pygame.draw.lines(screen, pygame.Color("black"), False, [p1, p2])
 
-        # for line in static_lines:
-        #     body = line.body
+        for line in static_lines:
+            # p1 = (line.a[0], flipy(line.a[1]))
+            # p2 = (line.b[0], flipy(line.b[1]))
+            body = line.body
 
-        #     pv1 = body.position + line.a.rotated(body.angle)
-        #     pv2 = body.position + line.b.rotated(body.angle)
-        #     p1 = int(pv1.x), int(flipy(pv1.y))
-        #     p2 = int(pv2.x), int(flipy(pv2.y))
-        #     pygame.draw.lines(screen, pygame.Color("lightgray"), False, [p1, p2])
+            pv1 = body.position + line.a.rotated(body.angle)
+            pv2 = body.position + line.b.rotated(body.angle)
+            p1 = int(pv1.x), int(flipy(pv1.y))
+            p2 = int(pv2.x), int(flipy(pv2.y))
+            pygame.draw.lines(screen, pygame.Color("gray"), False, [p1, p2])
+            # pygame.draw.lines(screen, pygame.Color("lightgray"), False, [p1, p2])
 
         ### Flip screen
         pygame.display.flip()
