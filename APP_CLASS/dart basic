@@ -1,0 +1,121 @@
+// https://dartpad.dev/?
+
+void main() {
+//   String name = "hello";
+//   print(name);
+//   int number1 = 12;
+//   print(number1);
+//   int a = 10;
+//   int b = 3;
+  
+//   print(a~/b);
+//   String a = "hello";
+//   String b = " dart";
+//   print(a + b);
+//   print('$a$b');
+  
+//   bool isTrue = true;
+//   bool isFalse = false;
+  
+//   var name  = "test";
+//   dynamic name2 = "testtest";
+  
+//   name = 1;
+//   name2 = 10;
+  
+//   var name;
+  
+//   name = "test";
+//   name = 1;
+  
+//   List lst = [];
+  
+//   lst.add('hello');
+//   lst.add('test');
+//   lst.removeAt(1);
+  
+//   print(lst);
+//   print(lst[0]);
+  
+//   List<String> lst = [];
+//   lst.add(1);
+//   lst.add("test");
+  
+//   List<String> lst = List.filled(4, '');
+//   lst[1] = 'b';
+//   print(lst);
+//   print(lst.length);
+  
+//   Map dictionary = {
+//     'test':'haha',
+//   };
+//   print(dictionary);
+//   print(dictionary['test']);
+  
+  
+//   dictionary['hah']='zz';
+//   print(dictionary);
+  
+//   dictionary.addAll({'aaewf':'awef', 'test':'zzzzz'});
+//   print(dictionary);
+  
+//   dictionary.remove('test');
+  
+//   print(dictionary.keys.toList());
+//   print(dictionary.values.toList());
+  
+//   Map<String, int> price = {
+//     'apple':2000,
+//     'banana':3000,
+//   };
+//   print(price);
+  
+//   final String name = "test";
+//   const String test = "name";
+  
+//   const DateTime now = DateTime.now();
+//   print(now);
+  
+//   Future.delayed(Duration(seconds: 1), (){
+//     final DateTime now2 = DateTime.now();
+//     print(now2);
+//   });
+  
+//   int? number;
+//   number ??= 10;
+//   print(number);
+  
+//   int number = 10;
+//   if(number % 4 == 0){
+//     print("faewfaew");
+//   }
+  
+//   switch(number % 4){
+//     case 0:
+//       print("asdfasdf");
+//       break;
+//     case 1:
+//       print("faweijofjweio");
+//       break;
+//     default:
+//       print("awief");
+//       break;
+//   }
+  
+//   for(int i=0;i<10;i++){
+//     print("hello");
+//   }
+  
+//   List numbers =[1, 2,3,4,5,6,7];
+//   for(int number in numbers){
+//     print(number);
+//   }
+  
+//   int number = 1;
+//   while(number < 10){
+//     print(number);
+//     number +=1;
+//   }
+  
+  
+}
