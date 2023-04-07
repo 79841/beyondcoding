@@ -4,13 +4,14 @@ import openai
 
 openai.api_key = "your api key"
 
-
+messages = []
 while True:
-    msg = input("Me : ")
-    if msg == "quit":
-        break
+    newMsg = {"role": "user", "content": input("Me : ")}
 
-    completion = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo", messages=[{"role": "user", "content": msg}]
-    )
+    messages.append(newMsg)
+    completion = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=messages)
+    messages.append(completion.choices[0].message)
     print("Chatgpt :", completion.choices[0].message["content"])
+
+    if newMsg["content"] == "bye":
+        break
